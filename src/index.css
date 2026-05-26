@@ -218,6 +218,7 @@ body {
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0);
@@ -458,12 +459,30 @@ body {
 
   .nav-links {
     display: flex;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    /* ← was 'wrap' */
+    overflow-x: auto;
+    /* ← add this */
+    white-space: nowrap;
+    /* ← add this */
+    scrollbar-width: none;
+    /* ← add this */
     width: 100%;
     order: 3;
   }
+
+  .nav-links::-webkit-scrollbar {
+    /* ← add this block */
+    display: none;
+  }
+
+
+  .nav-links li {
+    flex-shrink: 0;
+    /* ← add this */
+  }
+
 
   .nav-links a {
     font-size: 0.75rem;
