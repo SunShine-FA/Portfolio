@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import faseehImg from "./assets/faseeh.webp";
+import faseehImg from "/src/assets/faseeh.webp";
 
 const NAV_LINKS = ["Home", "About", "Skills", "Experience", "Projects", "Certifications", "Contact"];
 
