@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import faseehImg from "./assets/faseeh.webp";
 
 const NAV_LINKS = ["Home", "About", "Skills", "Experience", "Projects", "Certifications", "Contact"];
 
@@ -154,8 +155,8 @@ function HeroSection() {
           <div className="profile-circle">
             {/* Replace src with your actual image */}
             <img
-              src="src/assets/faseeh.webp"
-              alt="Faseeh ur Rehman"
+              src={faseehImg}
+              alt="Faseeh"
               className="profile-img"
             />
           </div>
