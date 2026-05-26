@@ -454,9 +454,18 @@ body {
     gap: 1.5rem;
   }
 
-  .nav-links {
-    display: none;
-  }
+.nav-links {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  order: 3;
+}
+
+.nav-links a {
+  font-size: 0.75rem;
+}
 
   .hero-section {
     flex-direction: column-reverse;
