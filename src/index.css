@@ -1,6 +1,3 @@
-/* GOOGLE FONT */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -231,20 +228,38 @@ body {
 
 /* NAVBAR */
 .navbar {
-  position: relative;
-  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  background: rgba(13, 15, 26, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   gap: 2.5rem;
-  padding: 1.4rem 4rem;
+  padding: 1.2rem 4rem;
 }
 
 .nav-logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #7c3aed;
+  display: flex;
+  align-items: center;
   margin-right: auto;
-  letter-spacing: -1px;
+  text-decoration: none;
+}
+
+.nav-logo-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(124, 58, 237, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.nav-logo-img:hover {
+  transform: scale(1.05);
 }
 
 .nav-links {
@@ -305,6 +320,7 @@ body {
 }
 
 .hero-greeting {
+  margin-top: 50px;
   color: #cbd5e1;
   font-size: 1.15rem;
   font-weight: 400;
@@ -651,4 +667,356 @@ body {
     font-size: 0.7rem;
     padding: 0.4rem 0.7rem;
   }
+}
+
+/* ==========================================
+   EXTRACTED SUB-PAGE AND LAYOUT COMPONENT STYLES
+   ========================================== */
+
+/* Utility class to expand a container to fill its parent's width and height */
+.full-size {
+  width: 100%;
+  height: 100%;
+}
+
+/* Base layout class for portfolio pages (About, Skills, Experience, Projects, Education, Certifications, Contact) to override defaults and stack components vertically */
+.subpage-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* Layout container setting the maximum width boundary to 700px */
+.content-max-700 {
+  max-width: 700px;
+  width: 100%;
+}
+
+/* Layout container setting the maximum width boundary to 800px */
+.content-max-800 {
+  max-width: 800px;
+  width: 100%;
+}
+
+/* Layout container setting the maximum width boundary to 900px */
+.content-max-900 {
+  max-width: 900px;
+  width: 100%;
+}
+
+/* Utility to add 1.5rem (24px) spacing at the bottom of headers and titles */
+.mb-15 {
+  margin-bottom: 1.5rem;
+}
+
+/* Utility to add 2rem (32px) spacing at the bottom of headers and titles */
+.mb-20 {
+  margin-bottom: 2rem;
+}
+
+/* Text coloring utility using the primary purple accent color */
+.text-purple {
+  color: #7c3aed;
+}
+
+/* Main text block representing biography details on the About page */
+.about-bio {
+  max-width: 100%;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+/* Layout container aligning biography/intro text for the Contact form page */
+.contact-bio {
+  max-width: 100%;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+/* Common container for holding lists of education milestones or professional work experiences */
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Glassmorphism card component with translucent background, purple border, blur filter, and hover transition effects */
+.portfolio-card {
+  background: rgba(17, 24, 39, 0.5);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.05);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Alignment layout that arranges card children in a vertical column with space-between positioning */
+.portfolio-card-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Specific layout height constraint for project showcase cards */
+.project-card-height {
+  min-height: 260px;
+}
+
+/* Top bar alignment for cards, placing the title on the left and the dates on the right */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+/* Bold title typography for portfolio and timeline cards */
+.card-title {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Medium size title typography used for credentials/certifications cards */
+.card-title-medium {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+/* Secondary header under card titles, typically showing school, company, or organization */
+.card-subtitle {
+  color: #cbd5e1;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+/* Accentuated text displaying dates, timeframes, or duration on cards */
+.card-duration {
+  color: #7c3aed;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Standard description paragraph inside portfolio cards */
+.card-description {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Slightly smaller body text description for list-heavy cards */
+.card-description-small {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Bulleted detail list styling within professional work experience cards */
+.card-list {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+/* List item helper that adds vertical spacing between bullets in cards */
+.card-list-item {
+  margin-bottom: 6px;
+}
+
+/* Metadata tag showing the name of the certification authority */
+.card-issuer {
+  color: #7c3aed;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Flex aligned block at the bottom of certification cards */
+.card-footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Styled text used in the footer region of a card */
+.card-footer-text {
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+/* Responsive grid layout using repeat and minmax to pack cards with min-width of 250px */
+.grid-container-250 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Responsive grid layout using repeat and minmax to pack cards with min-width of 280px */
+.grid-container-280 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Card header used on the About page to align title text and icons */
+.about-card-title {
+  color: #ffffff;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Centered title header styling for skills group cards */
+.skills-category-title {
+  color: #ffffff;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+  padding-bottom: 8px;
+}
+
+/* Flex container wrapping skills badges with wrap enabled */
+.skills-badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Rounded, bordered pill representing a particular technical skill */
+.skills-badge {
+  background: rgba(124, 58, 237, 0.1);
+  color: #e2e8f0;
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+/* Container panel styling for the contact form */
+.contact-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background: rgba(17, 24, 39, 0.4);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 16px;
+  padding: 30px;
+  backdrop-filter: blur(8px);
+}
+
+/* Standard vertical stack element grouping form labels and controls */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Text typography for form labels */
+.form-label {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Common style rules for input and text fields inside forms */
+.form-input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #ffffff;
+  font-family: inherit;
+  outline: none;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+/* Focus outline glow helper for form input text fields */
+.form-input:focus {
+  border-color: rgba(124, 58, 237, 0.8);
+}
+
+/* Disable resize dragging handle for forms textareas */
+.form-textarea {
+  resize: none;
+}
+
+/* Layout settings positioning and sizing the submit button inside the contact form */
+.form-submit-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+/* Specific heading styling for project cards */
+.project-card-title {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Specific description paragraph constraints within project showcase cards */
+.project-card-desc {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Horizontal flex flow aligning project technology tag pills */
+.project-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+
+/* Small tag badge representing a language or tech used in a project */
+.project-tag {
+  background: rgba(124, 58, 237, 0.08);
+  color: #7c3aed;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* Flex aligned hyperlink leading to project live site or github page */
+.project-link {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: opacity 0.2s ease;
+}
+
+/* Hover opacity transition helper for project links */
+.project-link:hover {
+  opacity: 0.8;
 }

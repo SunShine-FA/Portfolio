@@ -2,11 +2,8 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const splashTexts = [
-  "> Initializing Faseeh.dev...",
-  "> Loading Projects...",
-  "> Compiling Skills...",
-  "> Fetching Experience...",
-  "> Welcome, Visitor.",
+  "> TAKING YOU TO THE ULTIMATE WEB BY FASEEH UR REHMAN",
+  "> WELCOME VISITOR",
 ];
 
 function SplashScreen() {
