@@ -2,23 +2,34 @@ import { motion } from "framer-motion";
 
 const EXPERIENCES = [
   {
-    role: "Freelance Full-Stack Developer",
-    company: "Upwork / Self-Employed",
-    duration: "2023 - Present",
+    role: "President",
+    company: "BIIT Information and Cyber Security Society",
+    duration: "Sep 2023 – July 2025",
     points: [
-      "Designed and developed highly responsive portfolio websites and web tools.",
-      "Built custom web architectures using React.js, Node.js, and MongoDB.",
-      "Integrated secure authentication protocols and database security measures.",
+      "Led the Cyber Society’s vision, strategy, and growth, aligning with institutional goals.",
+      "Organized cybersecurity seminars, workshops, and campus-wide hackathons.",
+      "Conducted cybersecurity awareness sessions and hands-on training for 50+ students.",
+      "Mentored team members and coordinated event management activities.",
+      "Promoted cybersecurity research, collaboration, and real-world problem-solving."
     ],
   },
   {
-    role: "Cyber Security Trainee & Open Source Contributor",
-    company: "GitHub / Community",
-    duration: "2022 - Present",
+    role: "Teacher Assistant",
+    company: "Barani Institute of Information Technology",
+    duration: "Feb 2023 – May 2025",
     points: [
-      "Performed audit reports and vulnerability assessments for web applications.",
-      "Participated in capture the flag (CTF) challenges to hone penetration testing skills.",
-      "Contributed code fixes and documentation to public repositories.",
+      "Assisted in teaching network and system administration courses.",
+      "Supported students with technical queries and lab assignments.",
+      "Gained hands-on experience with networking equipment and troubleshooting."
+    ],
+  },
+  {
+    role: "Customer Sales Representative",
+    company: "MARS BPO",
+    duration: "Jul 2024",
+    points: [
+      "Communicated with customers through outbound calls to promote products and services.",
+      "Handled customer inquiries and provided personalized solutions to improve customer satisfaction."
     ],
   }
 ];

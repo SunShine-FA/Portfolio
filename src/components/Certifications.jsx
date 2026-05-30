@@ -2,22 +2,46 @@ import { motion } from "framer-motion";
 
 const CERTIFICATIONS = [
   {
-    title: "eLearnSecurity Junior Penetration Tester (eJPT)",
-    issuer: "INE / eLearnSecurity",
+    title: "Certified Ethical Hacker (CEH)",
+    issuer: "EC Council, NAVTTC",
+    date: "2025",
+    description: "Certification No: ECC7149258630",
+  },
+  {
+    title: "Cisco Certified Network Associate (CCNA)",
+    issuer: "Technologix, Rawalpindi/Islamabad",
     date: "2024",
-    description: "Hands-on certification validating skills in penetration testing, network assessment, web app security, and system exploits.",
+    description: "Reference ID: TCN-24/05/CCNA/04",
   },
   {
-    title: "Meta Front-End Developer Certificate",
-    issuer: "Meta / Coursera",
+    title: "Cyber Security Summer Short Course",
+    issuer: "Aridian Array Software Society, PMAS ARID",
+    date: "2024",
+    description: "Delivered in collaboration with PMAS ARID Agriculture University.",
+  },
+  {
+    title: "Firewall Router Design using pfSense",
+    issuer: "BIIT, Rawalpindi",
+    date: "2024",
+    description: "Hands-on implementation and routing configuration using pfSense.",
+  },
+  {
+    title: "ServiceNow – Software Engineering",
+    issuer: "BIIT, Rawalpindi",
+    date: "2024",
+    description: "Training focusing on custom workflows and application development on ServiceNow.",
+  },
+  {
+    title: "Chamber of Cipher",
+    issuer: "NaSCon NUCES, Islamabad",
+    date: "2024",
+    description: "Cryptography and cipher solving competition.",
+  },
+  {
+    title: "Basics of Ethical Hacking",
+    issuer: "BIIT, Rawalpindi",
     date: "2023",
-    description: "Professional certificate training validating expertise in React, UI/UX, version control, and client-side web application deployment.",
-  },
-  {
-    title: "Responsive Web Design",
-    issuer: "freeCodeCamp",
-    date: "2022",
-    description: "Earned accreditation in fundamental web design, including semantic HTML structure, responsive layout principles, and CSS style rules.",
+    description: "Introduction to fundamental penetration testing concepts and cybersecurity.",
   }
 ];
 
