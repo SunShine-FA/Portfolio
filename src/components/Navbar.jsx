@@ -1,5 +1,6 @@
-  import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import logoImg from "/src/assets/faseeh.webp";
 
 const NAV_LINKS = [
@@ -14,6 +15,10 @@ const NAV_LINKS = [
 ];
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <motion.nav
       className="navbar"
@@ -22,9 +27,13 @@ function Navbar() {
       transition={{ duration: 0.6 }}
     >
       <div className="nav-logo">
-        <img src={logoImg} alt="Logo" className="nav-logo-img" />
+        <NavLink to="/" onClick={closeMenu}>
+          <img src={logoImg} alt="Logo" className="nav-logo-img" />
+        </NavLink>
       </div>
-      <ul className="nav-links">
+
+      {/* Desktop nav links */}
+      <ul className="nav-links nav-links-desktop">
         {NAV_LINKS.map((link) => (
           <li key={link.name}>
             <NavLink
@@ -37,7 +46,48 @@ function Navbar() {
           </li>
         ))}
       </ul>
-      <button className="download-cv-btn">Download CV</button>
+
+      <button className="download-cv-btn download-cv-desktop">Download CV</button>
+
+      {/* Hamburger button — visible only on mobile */}
+      <button
+        className="hamburger-btn"
+        onClick={() => setMenuOpen((prev) => !prev)}
+        aria-label="Toggle menu"
+      >
+        <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
+        <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
+        <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
+      </button>
+
+      {/* Mobile slide-down menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <ul className="mobile-menu-links">
+              {NAV_LINKS.map((link) => (
+                <li key={link.name}>
+                  <NavLink
+                    to={link.path}
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                    end={link.path === "/"}
+                    onClick={closeMenu}
+                  >
+                    {link.name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            <button className="download-cv-btn mobile-cv-btn">Download CV</button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }

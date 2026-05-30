@@ -306,8 +306,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5rem 4rem 3rem;
-  min-height: calc(100vh - 80px);
+  padding: 6rem 4rem 3rem;
+  padding-top: calc(80px + 3rem);
+  min-height: 100vh;
   gap: 3rem;
 }
 
@@ -381,6 +382,8 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
   transition: background 0.2s, transform 0.15s;
 }
 
@@ -399,6 +402,8 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
   transition: border-color 0.2s, transform 0.15s;
 }
 
@@ -463,144 +468,284 @@ body {
   object-fit: cover;
   object-position: top center;
 }
+/* ==========================================
+   HAMBURGER BUTTON & MOBILE MENU
+   ========================================== */
 
-/* TABLET RESPONSIVE */
-@media (max-width: 900px) {
+/* Hamburger toggle button — hidden on desktop, shown on mobile */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 60;
+}
+
+/* Individual hamburger line */
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animated X state for hamburger lines */
+.hamburger-line.open:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.hamburger-line.open:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-line.open:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* Full-width slide-down mobile menu panel */
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: rgba(13, 15, 26, 0.95);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(124, 58, 237, 0.15);
+  overflow: hidden;
+  z-index: 55;
+}
+
+/* Vertically stacked mobile navigation links */
+.mobile-menu-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.5rem;
+  gap: 0;
+}
+
+.mobile-menu-links li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mobile-menu-links a {
+  display: block;
+  padding: 0.85rem 0.5rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.mobile-menu-links a:hover,
+.mobile-menu-links a.active {
+  color: #fff;
+  padding-left: 1rem;
+}
+
+/* Mobile download CV button inside slide-down menu */
+.mobile-cv-btn {
+  margin: 0 1.5rem 1.2rem;
+  width: calc(100% - 3rem);
+  text-align: center;
+}
+
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================== */
+
+/* ---------- LARGE TABLET (max-width: 1024px) ---------- */
+@media (max-width: 1024px) {
+  /* Reduce horizontal padding on navbar */
   .navbar {
-    padding: 1.2rem 1rem;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    padding: 1rem 2rem;
+    gap: 1.5rem;
   }
 
-  .nav-links {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: nowrap;
-    /* ← was 'wrap' */
-    overflow-x: auto;
-    /* ← add this */
-    white-space: nowrap;
-    /* ← add this */
-    scrollbar-width: none;
-    /* ← add this */
-    width: 100%;
-    order: 3;
+  /* Reduce hero section horizontal padding */
+  .hero-section {
+    padding: 6rem 2rem 3rem;
+    padding-top: calc(80px + 2rem);
   }
 
-  .nav-links::-webkit-scrollbar {
-    /* ← add this block */
-    display: none;
+  /* Shrink profile image slightly */
+  .profile-circle {
+    width: 280px;
+    height: 280px;
   }
 
-
-  .nav-links li {
-    flex-shrink: 0;
-    /* ← add this */
+  /* Reduce sub-page horizontal padding */
+  .subpage-section {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
+  /* Reduce card padding */
+  .portfolio-card {
+    padding: 20px;
+  }
 
-  .nav-links a {
-    font-size: 0.75rem;
+  /* Allow project cards to be shorter */
+  .project-card-height {
+    min-height: 240px;
+  }
+
+  /* Contact form tighten padding */
+  .contact-form {
+    padding: 24px;
   }
 }
 
-/* MOBILE RESPONSIVE */
-@media (max-width: 600px) {
-
-  /* TERMINAL */
-  .terminal-box {
-    padding: 20px;
-    border-radius: 16px;
-  }
-
-  .terminal-content {
-    font-size: 0.85rem;
-    line-height: 1.7rem;
-  }
-
-  .name-section {
-    margin-top: 30px;
-  }
-
-  /* NAVBAR */
-  .navbar {
-    padding: 1rem;
+/* ---------- TABLET / SMALL LAPTOP (max-width: 900px) ---------- */
+@media (max-width: 900px) {
+  /* Reduce nav link gap on tablet */
+  .nav-links-desktop {
     gap: 1rem;
-    flex-direction: column;
-    align-items: center;
   }
 
-  .nav-logo {
-    width: 100%;
-    text-align: center;
-    font-size: 1.4rem;
-    margin-right: 0;
+  .nav-links-desktop a {
+    font-size: 0.8rem;
   }
 
-  /* SCROLLABLE NAV LINKS */
-  .nav-links {
-    width: 100%;
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    scrollbar-width: none;
-    padding-bottom: 4px;
-    justify-content: flex-start;
-  }
-
-  .nav-links::-webkit-scrollbar {
-    display: none;
-  }
-
-  .nav-links li {
-    flex-shrink: 0;
-  }
-
-  .nav-links a {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.2rem;
-  }
-
-  .download-cv-btn {
-    padding: 0.45rem 0.9rem;
-    font-size: 0.72rem;
-  }
-
-  /* HERO SECTION */
+  /* Stack hero vertically */
   .hero-section {
-    padding: 2rem 1rem;
-    gap: 2rem;
     flex-direction: column-reverse;
     text-align: center;
     align-items: center;
+    padding: 2rem 2rem;
+    padding-top: calc(80px + 2rem);
+    gap: 2rem;
   }
 
   .hero-content {
     align-items: center;
-  }
-
-  .hero-greeting {
-    font-size: 0.95rem;
-  }
-
-  .hero-name {
-    font-size: 2.1rem;
-  }
-
-  .hero-role {
-    font-size: 1rem;
-  }
-
-  .hero-bio {
-    font-size: 0.85rem;
-    line-height: 1.6;
     max-width: 100%;
   }
 
-  /* BUTTONS */
+  .hero-bio {
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  /* Shrink profile image for tablet */
+  .profile-circle {
+    width: 240px;
+    height: 240px;
+  }
+
+  .profile-glow-ring {
+    inset: -16px;
+  }
+
+  /* Reduce blobs */
+  .blob-1 {
+    width: 350px;
+    height: 350px;
+    top: -40px;
+    right: 0;
+  }
+
+  .blob-2 {
+    width: 250px;
+    height: 250px;
+  }
+
+  /* Sub-page grids: reduce minimums to prevent overflow */
+  .grid-container-280 {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  .grid-container-250 {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  /* Content max-widths to fill available space */
+  .content-max-700,
+  .content-max-800,
+  .content-max-900 {
+    max-width: 100%;
+  }
+}
+
+/* ---------- MOBILE (max-width: 768px) ---------- */
+@media (max-width: 768px) {
+  /* Hide desktop nav links and CV button */
+  .nav-links-desktop {
+    display: none;
+  }
+
+  .download-cv-desktop {
+    display: none;
+  }
+
+  /* Show hamburger menu button */
+  .hamburger-btn {
+    display: flex;
+  }
+
+  /* Compact navbar for mobile */
+  .navbar {
+    padding: 0.8rem 1.2rem;
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  /* Smaller logo on mobile */
+  .nav-logo-img {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Hero section mobile layout */
+  .hero-section {
+    flex-direction: column-reverse;
+    text-align: center;
+    align-items: center;
+    padding: 1.5rem 1.2rem 2rem;
+    padding-top: calc(70px + 1.5rem);
+    gap: 1.5rem;
+  }
+
+  .hero-content {
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .hero-greeting {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+
+  .hero-name {
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+  }
+
+  .hero-role {
+    font-size: 1.05rem;
+  }
+
+  .hero-bio {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    max-width: 100%;
+  }
+
+  /* Stack hero buttons vertically on mobile */
   .hero-buttons {
     flex-direction: column;
     width: 100%;
@@ -611,9 +756,10 @@ body {
   .btn-outline {
     width: 100%;
     padding: 0.7rem 1rem;
+    font-size: 0.9rem;
   }
 
-  /* SOCIAL ICONS */
+  /* Center social icons */
   .social-icons {
     gap: 1.1rem;
     justify-content: center;
@@ -624,17 +770,17 @@ body {
     height: 20px;
   }
 
-  /* PROFILE IMAGE */
+  /* Shrink profile image for mobile */
   .profile-circle {
-    width: 190px;
-    height: 190px;
+    width: 200px;
+    height: 200px;
   }
 
   .profile-glow-ring {
     inset: -14px;
   }
 
-  /* BACKGROUND BLOBS */
+  /* Reduce blobs on mobile */
   .blob-1,
   .blob-2 {
     width: 250px;
@@ -650,22 +796,277 @@ body {
     left: -100px;
     bottom: 20px;
   }
+
+  /* Sub-page section padding for mobile */
+  .hero-section.subpage-section {
+    padding: 1.5rem 1.2rem 2rem;
+    padding-top: calc(70px + 1.5rem);
+  }
+
+  /* Full-width grids on small screens — single column */
+  .grid-container-280 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-container-250 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Card adjustments */
+  .portfolio-card {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .project-card-height {
+    min-height: auto;
+  }
+
+  /* Card text scaling */
+  .card-title {
+    font-size: 1.05rem;
+  }
+
+  .card-title-medium {
+    font-size: 1rem;
+  }
+
+  .card-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .card-description,
+  .card-description-small {
+    font-size: 0.85rem;
+  }
+
+  .card-duration {
+    font-size: 0.82rem;
+  }
+
+  .card-list {
+    font-size: 0.85rem;
+    padding-left: 16px;
+  }
+
+  .card-issuer {
+    font-size: 0.72rem;
+  }
+
+  .card-footer-text {
+    font-size: 0.8rem;
+  }
+
+  /* About page bio text */
+  .about-bio {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .about-card-title {
+    font-size: 0.95rem;
+  }
+
+  /* Contact form mobile adjustments */
+  .contact-form {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .contact-bio {
+    font-size: 0.88rem;
+  }
+
+  .form-input {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+
+  .form-submit-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    align-self: stretch;
+  }
+
+  /* Skills badges */
+  .skills-badge {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+  }
+
+  .skills-category-title {
+    font-size: 1rem;
+  }
+
+  /* Project card text */
+  .project-card-title {
+    font-size: 1.1rem;
+  }
+
+  .project-card-desc {
+    font-size: 0.85rem;
+  }
+
+  .project-tag {
+    font-size: 0.72rem;
+    padding: 2px 7px;
+  }
+
+  .project-link {
+    font-size: 0.85rem;
+  }
+
+  /* Timeline container gap */
+  .timeline-container {
+    gap: 1rem;
+  }
+
+  /* Margin utilities — slightly less on mobile */
+  .mb-20 {
+    margin-bottom: 1.5rem;
+  }
+
+  .mb-15 {
+    margin-bottom: 1rem;
+  }
+
+  /* Splash screen terminal */
+  .terminal-box {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .terminal-content {
+    font-size: 0.85rem;
+    line-height: 1.7rem;
+  }
+
+  .name-section {
+    margin-top: 30px;
+  }
 }
 
-/* VERY SMALL MOBILE */
+/* ---------- SMALL MOBILE (max-width: 480px) ---------- */
+@media (max-width: 480px) {
+  /* Tighter navbar padding */
+  .navbar {
+    padding: 0.7rem 1rem;
+  }
+
+  .nav-logo-img {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* Hero section tighter */
+  .hero-section {
+    padding: 1.2rem 1rem 1.5rem;
+    padding-top: calc(60px + 1.2rem);
+    gap: 1.2rem;
+  }
+
+  .hero-section.subpage-section {
+    padding: 1.2rem 1rem 1.5rem;
+    padding-top: calc(60px + 1.2rem);
+  }
+
+  .hero-greeting {
+    margin-top: 5px;
+    font-size: 0.9rem;
+  }
+
+  .hero-name {
+    font-size: clamp(1.6rem, 8vw, 2rem);
+  }
+
+  .hero-role {
+    font-size: 0.95rem;
+  }
+
+  .hero-bio {
+    font-size: 0.82rem;
+  }
+
+  /* Profile image smaller */
+  .profile-circle {
+    width: 170px;
+    height: 170px;
+  }
+
+  .profile-glow-ring {
+    inset: -10px;
+  }
+
+  /* Mobile menu links smaller */
+  .mobile-menu-links a {
+    font-size: 0.88rem;
+    padding: 0.75rem 0.4rem;
+  }
+
+  /* Card padding */
+  .portfolio-card {
+    padding: 16px;
+  }
+
+  .contact-form {
+    padding: 16px;
+  }
+
+  /* Card header stack vertically on very small screens */
+  .card-header {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* ---------- VERY SMALL MOBILE (max-width: 380px) ---------- */
 @media (max-width: 380px) {
   .hero-name {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+  }
+
+  .hero-role {
+    font-size: 0.85rem;
   }
 
   .profile-circle {
-    width: 165px;
-    height: 165px;
+    width: 150px;
+    height: 150px;
   }
 
-  .download-cv-btn {
-    font-size: 0.7rem;
-    padding: 0.4rem 0.7rem;
+  .nav-logo-img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .hero-section {
+    padding: 1rem 0.8rem 1.2rem;
+    padding-top: calc(55px + 1rem);
+  }
+
+  .hero-section.subpage-section {
+    padding: 1rem 0.8rem 1.2rem;
+    padding-top: calc(55px + 1rem);
+  }
+
+  .about-bio {
+    font-size: 0.82rem;
+  }
+
+  .skills-badge {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
+
+  .portfolio-card {
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.82rem;
   }
 }
 
