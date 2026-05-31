@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Routes, Route } from "react-router-dom";
 import SplashScreen from "./components/SplashScreen";
@@ -15,18 +15,12 @@ import Contact from "./components/Contact";
 function App() {
   const [showSplash, setShowSplash] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSplash(false);
-    }, 1500); // Changed from 15s to 1.5s for a better user experience, or you can adjust back if needed.
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <>
       <AnimatePresence>
-        {showSplash && <SplashScreen />}
+        {showSplash && (
+          <SplashScreen onFinish={() => setShowSplash(false)} />
+        )}
       </AnimatePresence>
 
       {!showSplash && (
