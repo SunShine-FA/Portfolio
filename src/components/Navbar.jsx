@@ -27,9 +27,9 @@ function Navbar() {
       transition={{ duration: 0.6 }}
     >
       <div className="nav-logo">
-        <NavLink to="/" onClick={closeMenu}>
+        <div>
           <img src={logoImg} alt="Logo" className="nav-logo-img" />
-        </NavLink>
+        </div>
       </div>
 
       {/* Desktop nav links */}
