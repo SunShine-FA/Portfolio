@@ -1151,9 +1151,16 @@ body {
   border: 1px solid rgba(124, 58, 237, 0.2);
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.05);
+  /* Neon glow effect */
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.05), 0 0 10px rgba(124, 58, 237, 0.6), 0 0 20px rgba(124, 58, 237, 0.4);
   backdrop-filter: blur(8px);
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover neon pulse */
+.portfolio-card:hover {
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.8), 0 0 30px rgba(124, 58, 237, 0.6);
+  transform: translateY(-4px);
 }
 
 /* Alignment layout that arranges card children in a vertical column with space-between positioning */
@@ -1420,12 +1427,4 @@ body {
 /* Hover opacity transition helper for project links */
 .project-link:hover {
   opacity: 0.8;
-}
-
-
-@media (max-width: 768px) {
-  .card-footer .btn-primary,
-  .card-footer .btn-outline {
-    width: auto;
-  }
 }
