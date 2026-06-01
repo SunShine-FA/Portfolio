@@ -1,24 +1,25 @@
 import { motion } from "framer-motion";
 
 const PROJECTS_DATA = [
+
   {
-    title: "SecureShare",
-    description: "An end-to-end encrypted web app for secure file storage and link sharing. Features secure credentials management and session tracking.",
-    tags: ["React", "Node.js", "Cryptography", "MongoDB"],
-    link: "#",
+    title: "Rental Property Management System",
+    description: "A comprehensive property rental management platform inspired by Airbnb, featuring landlord property listings, tenant property discovery and rental workflows, admin-controlled property approvals, and user management functionalities.",
+    tags: ["React.js", ".Net Framework", "SQL"],
   },
+
   {
-    title: "VibeMusic",
-    description: "A gorgeous, responsive music streaming UI featuring smooth transitions, audio visualizer, playlist management, and responsive layouts.",
-    tags: ["React.js", "Framer Motion", "CSS Variables"],
-    link: "#",
+    title: "Chatting Application",
+    description: "A WhatsApp-inspired real-time chat application that supports instant messaging, image sharing, and video sharing through a clean and responsive user interface.",
+    tags: ["React.js", "CSS Variables", "Firebase"],
   },
+
   {
-    title: "PortScan Network Utility",
-    description: "A fast, multi-threaded port scanner and host discovery tool designed to find open ports and identify software banners on target nodes.",
-    tags: ["Python", "Socket Programming", "Cyber Security"],
-    link: "#",
+    title: "Cyber Security Awareness Platform",
+    description: "A cybersecurity awareness platform that helps users understand common cyber threats, security best practices, and online safety through interactive educational content.",
+    tags: ["HTML", "CSS", "Javascript"],
   }
+
 ];
 
 function Projects() {
@@ -70,12 +71,7 @@ function Projects() {
                     </span>
                   ))}
                 </div>
-                <a
-                  href={proj.link}
-                  className="project-link"
-                >
-                  View Project <span className="text-purple">→</span>
-                </a>
+                
               </div>
             </motion.div>
           ))}

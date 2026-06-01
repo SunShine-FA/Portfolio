@@ -1421,3 +1421,11 @@ body {
 .project-link:hover {
   opacity: 0.8;
 }
+
+
+@media (max-width: 768px) {
+  .card-footer .btn-primary,
+  .card-footer .btn-outline {
+    width: auto;
+  }
+}
