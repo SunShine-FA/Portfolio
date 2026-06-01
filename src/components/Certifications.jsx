@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 import cehImg from "/src/assets/CEHCertificate.png";
@@ -64,6 +64,8 @@ const CERTIFICATIONS = [
 
 function Certifications() {
   const [selectedCert, setSelectedCert] = useState(null);
+  const imgRef = useRef(null);
+  const scaleRef = useRef(1);
 
   const containerVariants = {
     hidden: {},
@@ -73,6 +75,91 @@ function Certifications() {
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedCert) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedCert]);
+
+  // Image zoom via mouse wheel and pinch-to-zoom (touch)
+  useEffect(() => {
+    if (!selectedCert) return;
+
+    // Small delay to ensure the img element is mounted in the portal
+    const timeout = setTimeout(() => {
+      const img = imgRef.current;
+      if (!img) return;
+
+      // Reset scale whenever a new cert opens
+      scaleRef.current = 1;
+      img.style.transform = "scale(1)";
+      img.style.transformOrigin = "center center";
+
+      // --- Mouse wheel zoom ---
+      const onWheel = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const delta = e.deltaY > 0 ? 0.9 : 1.1;
+        scaleRef.current = Math.min(Math.max(scaleRef.current * delta, 1), 5);
+        img.style.transform = `scale(${scaleRef.current})`;
+      };
+
+      // --- Pinch-to-zoom (touch) ---
+      let lastDist = null;
+
+      const getTouchDist = (touches) => {
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.hypot(dx, dy);
+      };
+
+      const onTouchMove = (e) => {
+        if (e.touches.length !== 2) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const dist = getTouchDist(e.touches);
+        if (lastDist !== null) {
+          const ratio = dist / lastDist;
+          scaleRef.current = Math.min(Math.max(scaleRef.current * ratio, 1), 5);
+          img.style.transform = `scale(${scaleRef.current})`;
+        }
+        lastDist = dist;
+      };
+
+      const onTouchEnd = () => {
+        lastDist = null;
+      };
+
+      img.addEventListener("wheel", onWheel, { passive: false });
+      img.addEventListener("touchmove", onTouchMove, { passive: false });
+      img.addEventListener("touchend", onTouchEnd);
+
+      // Cleanup
+      return () => {
+        img.removeEventListener("wheel", onWheel);
+        img.removeEventListener("touchmove", onTouchMove);
+        img.removeEventListener("touchend", onTouchEnd);
+      };
+    }, 50);
+
+    return () => clearTimeout(timeout);
+  }, [selectedCert]);
+
+  // Reset zoom when modal closes
+  const handleClose = () => {
+    scaleRef.current = 1;
+    if (imgRef.current) {
+      imgRef.current.style.transform = "scale(1)";
+    }
+    setSelectedCert(null);
   };
 
   return (
@@ -104,7 +191,10 @@ function Certifications() {
                 <h3 className="card-title-medium">{cert.title}</h3>
                 <p className="card-description-small">{cert.description}</p>
               </div>
-              <div className="card-footer" style={{ justifyContent: "space-between", alignItems: "center" }}>
+              <div
+                className="card-footer"
+                style={{ justifyContent: "space-between", alignItems: "center" }}
+              >
                 <button
                   className="btn-primary"
                   style={{ padding: "0.4rem 1rem", fontSize: "0.82rem", width: "auto" }}
@@ -113,7 +203,6 @@ function Certifications() {
                   View
                 </button>
                 <span className="card-footer-text">{cert.date}</span>
-
               </div>
             </motion.div>
           ))}
@@ -132,13 +221,17 @@ function Certifications() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25 }}
-                onClick={() => setSelectedCert(null)}
+                onClick={handleClose}
                 style={{
                   position: "fixed",
-                  inset: 0,
+                  top: 0,
+                  left: 0,
+                  width: "100vw",
+                  height: "100vh",
                   background: "rgba(0,0,0,0.85)",
                   zIndex: 9998,
                   backdropFilter: "blur(4px)",
+                  WebkitBackdropFilter: "blur(4px)",
                 }}
               />
 
@@ -175,15 +268,32 @@ function Certifications() {
                   }}
                 >
                   {/* Modal header */}
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px", gap: "1rem" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                      marginBottom: "16px",
+                      gap: "1rem",
+                    }}
+                  >
                     <div>
-                      <span className="card-issuer" style={{ marginBottom: "4px" }}>{selectedCert.issuer}</span>
-                      <h3 style={{ color: "#fff", fontSize: "1.1rem", fontWeight: 600, lineHeight: 1.4 }}>
+                      <span className="card-issuer" style={{ marginBottom: "4px" }}>
+                        {selectedCert.issuer}
+                      </span>
+                      <h3
+                        style={{
+                          color: "#fff",
+                          fontSize: "1.1rem",
+                          fontWeight: 600,
+                          lineHeight: 1.4,
+                        }}
+                      >
                         {selectedCert.title}
                       </h3>
                     </div>
                     <button
-                      onClick={() => setSelectedCert(null)}
+                      onClick={handleClose}
                       style={{
                         background: "rgba(124,58,237,0.15)",
                         border: "1px solid rgba(124,58,237,0.3)",
@@ -199,24 +309,79 @@ function Certifications() {
                     </button>
                   </div>
 
-                  {/* Certificate image */}
-                  <img
-                    src={selectedCert.image}
-                    alt={selectedCert.title}
+                  {/* Zoom hint */}
+                  <p
                     style={{
-                      width: "100%",
-                      borderRadius: "10px",
-                      border: "1px solid rgba(124,58,237,0.2)",
-                      objectFit: "contain",
-                      maxHeight: "65vh",
+                      color: "rgba(148,163,184,0.7)",
+                      fontSize: "0.75rem",
+                      marginBottom: "10px",
+                      textAlign: "center",
+                      letterSpacing: "0.3px",
                     }}
-                  />
+                  >
+                    Scroll or pinch to zoom the image
+                  </p>
+
+                  {/* Zoomable image container */}
+                  <div
+  style={{
+    overflow: "hidden",
+    borderRadius: "10px",
+    border: "1px solid rgba(124,58,237,0.2)",
+    height: "65vh",        // ← change maxHeight to height
+    width: "100%",         // ← add this
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "zoom-in",
+  }}
+>
+  <img
+    ref={imgRef}
+    src={selectedCert.image}
+    alt={selectedCert.title}
+    style={{
+      maxWidth: "100%",      // ← change width to maxWidth
+      maxHeight: "100%",     // ← add this
+      display: "block",
+      objectFit: "contain",
+      transition: "transform 0.1s ease",
+      transformOrigin: "center center",
+      userSelect: "none",
+      touchAction: "none",
+    }}
+  />
+</div>
+
+                  {/* Zoom reset button */}
+                  <div style={{ display: "flex", justifyContent: "center", marginTop: "12px" }}>
+                    <button
+                      onClick={() => {
+                        scaleRef.current = 1;
+                        if (imgRef.current) {
+                          imgRef.current.style.transform = "scale(1)";
+                        }
+                      }}
+                      style={{
+                        background: "rgba(124,58,237,0.12)",
+                        border: "1px solid rgba(124,58,237,0.3)",
+                        color: "#cbd5e1",
+                        borderRadius: "8px",
+                        padding: "4px 16px",
+                        cursor: "pointer",
+                        fontSize: "0.8rem",
+                        fontFamily: "inherit",
+                      }}
+                    >
+                      Reset Zoom
+                    </button>
+                  </div>
                 </motion.div>
               </div>
             </>
           )}
         </AnimatePresence>,
-        document.body   // 👈 renders outside all parent stacking contexts
+        document.body
       )}
     </main>
   );
