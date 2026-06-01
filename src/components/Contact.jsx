@@ -6,22 +6,22 @@ const CONTACT_INFO = [
   {
     id: "email",
     label: "EMAIL",
-    value: "hello@yourname.com",
-    href: "mailto:hello@yourname.com",
+    value: "faseeheccouncil123@gmail.com",
+    href: "mailto:faseeheccouncil123@gmail.com",
     Icon: FiMail,
   },
   {
     id: "phone",
     label: "PHONE",
-    value: "+1 (234) 567-8901",
-    href: "tel:+12345678901",
+    value: "+92 (343) 000-2422",
+    href: "tel:+923430002422",
     Icon: FiPhone,
   },
   {
     id: "linkedin",
     label: "LINKEDIN",
-    value: "linkedin.com/in/yourname",
-    href: "https://linkedin.com/in/yourname",
+    value: "linkedin.com/in/faseehurrehman663",
+    href: "https://linkedin.com/in/faseehurrehman663",
     Icon: FaLinkedinIn,
   },
 ];
@@ -61,7 +61,7 @@ function Contact() {
 
         <motion.div className="contact-cards" variants={itemVariants}>
           {CONTACT_INFO.map(({ id, label, value, href, Icon }) => (
-            
+            <a
               key={id}
               href={href}
               className="contact-card"
