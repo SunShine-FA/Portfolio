@@ -107,7 +107,7 @@ function Certifications() {
               <div className="card-footer" style={{ justifyContent: "space-between", alignItems: "center" }}>
                 <button
                   className="btn-primary"
-                  style={{ padding: "0.4rem 1rem", fontSize: "0.82rem" }}
+                  style={{ padding: "0.4rem 1rem", fontSize: "0.82rem", width: "auto" }}
                   onClick={() => setSelectedCert(cert)}
                 >
                   View

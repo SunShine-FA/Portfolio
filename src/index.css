@@ -754,7 +754,7 @@ body {
 
   .btn-primary,
   .btn-outline {
-    width: 100%;
+    width: auto;
     padding: 0.7rem 1rem;
     font-size: 0.9rem;
   }
