@@ -1,24 +1,32 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { FiMail, FiPhone } from "react-icons/fi";
+import { FaLinkedinIn } from "react-icons/fa";
+
+const CONTACT_INFO = [
+  {
+    id: "email",
+    label: "EMAIL",
+    value: "hello@yourname.com",
+    href: "mailto:hello@yourname.com",
+    Icon: FiMail,
+  },
+  {
+    id: "phone",
+    label: "PHONE",
+    value: "+1 (234) 567-8901",
+    href: "tel:+12345678901",
+    Icon: FiPhone,
+  },
+  {
+    id: "linkedin",
+    label: "LINKEDIN",
+    value: "linkedin.com/in/yourname",
+    href: "https://linkedin.com/in/yourname",
+    Icon: FaLinkedinIn,
+  },
+];
 
 function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", message: "" });
-    }, 3000);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
   const containerVariants = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.15 } },
@@ -40,68 +48,37 @@ function Contact() {
         <motion.p className="hero-greeting" variants={itemVariants}>
           Let's Connect
         </motion.p>
+
         <motion.h1 className="hero-name mb-15" variants={itemVariants}>
-          <span className="name-white">Contact</span> <span className="name-purple">Me</span>
+          <span className="name-white">Contact</span>{" "}
+          <span className="name-purple">Me</span>
         </motion.h1>
 
         <motion.p className="hero-bio contact-bio" variants={itemVariants}>
-          Have a project in mind, looking to hire, or just want to chat? Fill out the form below or reach out via email. I will get back to you as soon as possible!
+          Have a project in mind or just want to chat? Reach out directly —
+          I'll get back to you as soon as possible!
         </motion.p>
 
-        <motion.form
-          className="contact-form"
-          variants={itemVariants}
-          onSubmit={handleSubmit}
-        >
-          <div className="form-group">
-            <label htmlFor="name" className="form-label">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              placeholder="Your Name"
-              className="form-input"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="email" className="form-label">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              placeholder="your.email@example.com"
-              className="form-input"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="message" className="form-label">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              rows="5"
-              placeholder="Your Message..."
-              className="form-input form-textarea"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="btn-primary form-submit-btn"
-          >
-            {submitted ? "Message Sent!" : "Send Message"}
-          </button>
-        </motion.form>
+        <motion.div className="contact-cards" variants={itemVariants}>
+          {CONTACT_INFO.map(({ id, label, value, href, Icon }) => (
+            
+              key={id}
+              href={href}
+              className="contact-card"
+              target={id === "linkedin" ? "_blank" : undefined}
+              rel={id === "linkedin" ? "noopener noreferrer" : undefined}
+            >
+              <span className="contact-card-icon">
+                <Icon size={18} />
+              </span>
+              <span className="contact-card-text">
+                <span className="contact-card-label">{label}</span>
+                <span className="contact-card-value">{value}</span>
+              </span>
+              <span className="contact-card-arrow">↗</span>
+            </a>
+          ))}
+        </motion.div>
       </motion.div>
     </main>
   );
