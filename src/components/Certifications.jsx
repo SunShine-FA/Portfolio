@@ -113,7 +113,7 @@ function Certifications() {
                   View
                 </button>
                 <span className="card-footer-text">{cert.date}</span>
-                
+
               </div>
             </motion.div>
           ))}

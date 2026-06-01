@@ -227,13 +227,20 @@ body {
 }
 
 /* NAVBAR */
+@keyframes navbarGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 50;
-  background: rgba(13, 15, 26, 0.85);
+  background: linear-gradient(135deg, #1e1e2d, #3b2764, #2c3e50);
+  background-size: 200% 200%;
+  animation: navbarGradient 12s ease infinite;
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
@@ -279,6 +286,14 @@ body {
 .nav-links a:hover,
 .nav-links a.active {
   color: #fff;
+}
+
+/* Active navigation tab styling */
+.nav-links a.active {
+  background: rgba(124, 58, 237, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(124, 58, 237, 0.6);
 }
 
 .download-cv-btn {
@@ -468,6 +483,7 @@ body {
   object-fit: cover;
   object-position: top center;
 }
+
 /* ==========================================
    HAMBURGER BUTTON & MOBILE MENU
    ========================================== */
@@ -564,6 +580,7 @@ body {
 
 /* ---------- LARGE TABLET (max-width: 1024px) ---------- */
 @media (max-width: 1024px) {
+
   /* Reduce horizontal padding on navbar */
   .navbar {
     padding: 1rem 2rem;
@@ -606,6 +623,7 @@ body {
 
 /* ---------- TABLET / SMALL LAPTOP (max-width: 900px) ---------- */
 @media (max-width: 900px) {
+
   /* Reduce nav link gap on tablet */
   .nav-links-desktop {
     gap: 1rem;
@@ -684,6 +702,7 @@ body {
 
 /* ---------- MOBILE (max-width: 768px) ---------- */
 @media (max-width: 768px) {
+
   /* Hide desktop nav links and CV button */
   .nav-links-desktop {
     display: none;
@@ -948,6 +967,7 @@ body {
 
 /* ---------- SMALL MOBILE (max-width: 480px) ---------- */
 @media (max-width: 480px) {
+
   /* Tighter navbar padding */
   .navbar {
     padding: 0.7rem 1rem;
