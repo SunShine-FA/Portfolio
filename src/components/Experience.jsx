@@ -2,8 +2,20 @@ import { motion } from "framer-motion";
 
 const EXPERIENCES = [
   {
+    role: "Computer  Science Teacher",
+    company: "Air Foundation School and College, Jinnah Garden, Islamabad",
+    duration: "Sep 2025 – Present",
+    points: [
+      "Teaching Computer Science to students from Grade 7 to 2nd Year.",
+      "Conducting practical lab sessions focused on programming, MS Office, internet technologies and computer fundamentals.",
+      "Guiding students in software applications, digital literacy, and basic computer troubleshooting.",
+      "Preparing lesson plans, practical assignments, quizzes, and examinations aligned with academic objectives.",
+      "Promoting an interactive learning environment through practical demonstrations and real-world applications of computing concepts."
+    ],
+  },
+  {
     role: "President",
-    company: "BIIT Information and Cyber Security Society",
+    company: "BIIT Information and Cyber Security Society, BIIT Rawalpindi",
     duration: "Sep 2023 – July 2025",
     points: [
       "Led the Cyber Society’s vision, strategy, and growth, aligning with institutional goals.",
@@ -15,7 +27,7 @@ const EXPERIENCES = [
   },
   {
     role: "Teacher Assistant",
-    company: "Barani Institute of Information Technology",
+    company: "Barani Institute of Information Technology, 6th Road, Rawalpindi",
     duration: "Feb 2023 – May 2025",
     points: [
       "Assisted in teaching network and system administration courses.",
