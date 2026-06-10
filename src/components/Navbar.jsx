@@ -17,10 +17,8 @@ const NAV_LINKS = [
 ];
 
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [showCVModal, setShowCVModal] = useState(false);
 
-  const closeMenu = () => setMenuOpen(false);
   const openCVModal = () => setShowCVModal(true);
   const closeCVModal = () => setShowCVModal(false);
 
@@ -38,8 +36,8 @@ function Navbar() {
           </div>
         </div>
 
-        {/* Desktop nav links */}
-        <ul className="nav-links nav-links-desktop">
+        {/* Nav links (horizontal scrolling on mobile) */}
+        <ul className="nav-links">
           {NAV_LINKS.map((link) => (
             <li key={link.name}>
               <NavLink
@@ -53,51 +51,9 @@ function Navbar() {
           ))}
         </ul>
 
-        <button className="download-cv-btn download-cv-desktop" onClick={openCVModal}>
+        <button className="download-cv-btn" onClick={openCVModal}>
           Download CV
         </button>
-
-        {/* Hamburger button */}
-        <button
-          className="hamburger-btn"
-          onClick={() => setMenuOpen((prev) => !prev)}
-          aria-label="Toggle menu"
-        >
-          <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
-          <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
-          <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
-        </button>
-
-        {/* Mobile slide-down menu */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              className="mobile-menu"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <ul className="mobile-menu-links">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.name}>
-                    <NavLink
-                      to={link.path}
-                      className={({ isActive }) => (isActive ? "active" : "")}
-                      end={link.path === "/"}
-                      onClick={closeMenu}
-                    >
-                      {link.name}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-              <button className="download-cv-btn mobile-cv-btn" onClick={openCVModal}>
-                Download CV
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </motion.nav>
 
       {/* CV Modal rendered via Portal — outside the navbar entirely */}
