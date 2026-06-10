@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const splashTexts = [
-  "> TAKING YOU TO THE ULTIMATE WEB BY FASEEH UR REHMAN",
+  "> TAKING YOU TO THE ULTIMATE WEB BY FASEEH\u00A0UR\u00A0REHMAN",
   "> WELCOME VISITOR",
 ];
 
